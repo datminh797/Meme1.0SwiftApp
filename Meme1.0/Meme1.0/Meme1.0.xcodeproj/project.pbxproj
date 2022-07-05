@@ -13,7 +13,6 @@
 		4EF85DBD286E050000D999E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF85DBB286E050000D999E4 /* Main.storyboard */; };
 		4EF85DBF286E050100D999E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EF85DBE286E050100D999E4 /* Assets.xcassets */; };
 		4EF85DC2286E050100D999E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF85DC0286E050100D999E4 /* LaunchScreen.storyboard */; };
-		4EF85DCA286E06FD00D999E4 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF85DC9286E06FD00D999E4 /* ActivityViewController.swift */; };
 		4EF85DCC286E087A00D999E4 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF85DCB286E087A00D999E4 /* TextFieldDelegate.swift */; };
 		4EF85DCE286F479700D999E4 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF85DCD286F479700D999E4 /* Meme.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		4EF85DBE286E050100D999E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4EF85DC1286E050100D999E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EF85DC3286E050100D999E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4EF85DC9286E06FD00D999E4 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		4EF85DCB286E087A00D999E4 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		4EF85DCD286F479700D999E4 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +63,6 @@
 				4EF85DB5286E050000D999E4 /* AppDelegate.swift */,
 				4EF85DB7286E050000D999E4 /* SceneDelegate.swift */,
 				4EF85DB9286E050000D999E4 /* ViewController.swift */,
-				4EF85DC9286E06FD00D999E4 /* ActivityViewController.swift */,
 				4EF85DCB286E087A00D999E4 /* TextFieldDelegate.swift */,
 				4EF85DCD286F479700D999E4 /* Meme.swift */,
 				4EF85DBB286E050000D999E4 /* Main.storyboard */,
@@ -152,7 +149,6 @@
 				4EF85DB8286E050000D999E4 /* SceneDelegate.swift in Sources */,
 				4EF85DCE286F479700D999E4 /* Meme.swift in Sources */,
 				4EF85DCC286E087A00D999E4 /* TextFieldDelegate.swift in Sources */,
-				4EF85DCA286E06FD00D999E4 /* ActivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
