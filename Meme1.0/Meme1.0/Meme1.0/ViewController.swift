@@ -88,7 +88,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification : NSNotification){
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y = -getKeyboardHeight(notification)
     }
     
     func getKeyboardHeight(_ notification : NSNotification) -> CGFloat {
@@ -121,13 +121,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toActivityViewController" {
-//            let dvc =  segue.destination as! ActivityViewController
-//            dvc.receivedImage = self.generateMemedImage()
-//        }
-//    }
-    
     func save(){
             let meme = Meme(topText: topTextField.text!, botText: botTextField.text!, image: imageView.image!, memedImage: generateMemedImage())
         }
@@ -137,9 +130,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let imageToShare = [image!]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
         
-        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.mail]
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+//        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.mail]
+//        activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
+//            if !completed {
+//                // User canceled
+//                return
+//            }
+//            // User completed activity
+//        }
+        
+        
+        activityViewController.completionWithItemsHandler = {(type, completed, items, error) in
+            print("completed")
+        }
         
         self.present(activityViewController, animated: true, completion: nil)
     }
