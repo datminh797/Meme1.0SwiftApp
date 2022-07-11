@@ -12,9 +12,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pickFromLibBtn: UIButton!
     @IBOutlet weak var pickFromCamBtn: UIButton!
-    @IBOutlet weak var shareBtn: UIButton!
+//    @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var botTextField: UITextField!
+    @IBOutlet weak var shareBtn: UIBarButtonItem!
     
     var textField = TextFieldDelegate()
     
@@ -44,14 +45,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        save()
+        
     }
     
     let memeTextAttribute: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth: 10.5
+        NSAttributedString.Key.strokeWidth: -3.5
     ]
     
     @IBAction func pickFromLib(_ sender: UIImagePickerController.SourceType) {
@@ -88,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification : NSNotification){
-        view.frame.origin.y = -getKeyboardHeight(notification)
+        view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     func getKeyboardHeight(_ notification : NSNotification) -> CGFloat {
@@ -122,34 +123,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save(){
-            let meme = Meme(topText: topTextField.text!, botText: botTextField.text!, image: imageView.image!, memedImage: generateMemedImage())
+        _ = Meme(topText: topTextField.text!, botText: botTextField.text!, image: imageView.image!, memedImage: generateMemedImage())
+
+        print("saved")
         }
     
-    @IBAction func shareButton(_ sender: UIButton) {
+    
+    
+    @IBAction func shareButton(_ sender: Any) {
+    
         let image = imageView.image
-        
         let imageToShare = [image!]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         
-//        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.popoverPresentationController?.sourceView = self.view
         
-//        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.mail]
-//        activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType, completed: Bool, returnedItems: [Any]?, error: Error?) in
-//            if !completed {
-//                // User canceled
-//                return
-//            }
-//            // User completed activity
-//        }
-        
-        
-        activityViewController.completionWithItemsHandler = {(type, completed, items, error) in
-            print("completed")
+        activityViewController.completionWithItemsHandler = {activityViewController, completed, items, error in
+            self.save()
         }
         
         self.present(activityViewController, animated: true, completion: nil)
+        
     }
-    
-    
 }
-
