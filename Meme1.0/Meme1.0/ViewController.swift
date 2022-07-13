@@ -12,7 +12,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pickFromLibBtn: UIButton!
     @IBOutlet weak var pickFromCamBtn: UIButton!
-//    @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var botTextField: UITextField!
     @IBOutlet weak var shareBtn: UIBarButtonItem!
@@ -30,6 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         defaultTextField.text = "\(defaultText) Text"
         defaultTextField.textAlignment = .center
         defaultTextField.delegate = textField
+//        defaultTextField.delegate = self
         defaultTextField.defaultTextAttributes = memeTextAttribute
     }
     
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         shareBtn.isEnabled = false
         
         subscribeToKeyboardNotification()
-        hideTheKeyboard()
+//        hideTheKeyboard()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,11 +85,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
     }
     
     @objc func keyboardWillShow(_ notification : NSNotification){
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if botTextField.isFirstResponder {
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
     }
     
     func getKeyboardHeight(_ notification : NSNotification) -> CGFloat {
@@ -128,8 +129,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("saved")
         }
     
-    
-    
     @IBAction func shareButton(_ sender: Any) {
     
         let image = imageView.image
@@ -139,7 +138,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         activityViewController.popoverPresentationController?.sourceView = self.view
         
         activityViewController.completionWithItemsHandler = {activityViewController, completed, items, error in
-            self.save()
+            if completed {
+                self.save()
+            }
         }
         
         self.present(activityViewController, animated: true, completion: nil)
